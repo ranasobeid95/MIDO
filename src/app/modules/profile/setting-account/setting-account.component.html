@@ -1,0 +1,111 @@
+<div class="settings" [class.blur]="loading">
+  <mat-progress-bar
+    *ngIf="!userInfo"
+    class="progress"
+    mode="indeterminate"
+  ></mat-progress-bar>
+
+  <div *ngIf="userInfo">
+    <h2 class="title">Account</h2>
+    <app-crop-image
+      *ngIf="showCrop"
+      [inputEvent]="imageEvent"
+      (closedCropChanged)="onClosedCrop(inputFile)"
+    ></app-crop-image>
+    <div class="wrap-img">
+      <img class="img" [src]="imageSrc" alt="account-img" />
+      <button (click)="showBrowser(inputFile)" class="upload-btn">
+        <input
+          (change)="onChangeImage($event)"
+          #inputFile
+          class="input-file"
+          type="file"
+        />
+        <mat-icon class="icon">cloud_upload</mat-icon>
+        Upload
+      </button>
+    </div>
+    <div class="line"></div>
+    <form class="form" [formGroup]="accountForm">
+      <div class="form__fields-wrap">
+        <div class="form__field">
+          <label class="label">First Name</label>
+          <input class="input" type="text" formControlName="firstName" />
+        </div>
+        <div class="form__field">
+          <label class="label">Last Name</label>
+          <input class="input" type="text" formControlName="lastName" />
+        </div>
+      </div>
+      <div class="form__field">
+        <label class="label">Date Of Birth</label>
+        <div class="field-date">
+          <mat-datepicker #picker color="primary"></mat-datepicker>
+          <mat-datepicker-toggle
+            class="date-icon"
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <input
+            [matDatepicker]="picker"
+            class="input"
+            #inputDate
+            readonly
+            formControlName="dateOfBirth"
+            (click)="picker.open()"
+          />
+        </div>
+      </div>
+      <div class="form__field">
+        <label class="label">Gender</label>
+        <mat-radio-group
+          formControlName="gender"
+          class="radio-group"
+          color="primary"
+        >
+          <mat-radio-button value="female">Female</mat-radio-button>
+          <mat-radio-button value="male">Male</mat-radio-button>
+          <mat-radio-button value="other">Other</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="form__field">
+        <label class="label">Main health goal</label>
+        <app-select
+          [options]="mainGoals"
+          [label]="'Choose main Health Goals'"
+          [defaultValue]="originalValues.healthGoal"
+          (selectedChanged)="onSelectValue($event, 'healthGoal')"
+        ></app-select>
+      </div>
+      <div class="form__field">
+        <label class="label">Diet Of Choice</label>
+        <app-select
+          [options]="DIET_OF_CHOICE"
+          [label]="'Choose Diet Of Choice'"
+          [defaultValue]="originalValues.diet"
+          (selectedChanged)="onSelectValue($event, 'diet')"
+        ></app-select>
+      </div>
+      <div class="form__field">
+        <label class="label">Height in meters</label>
+        <input class="input" type="text" formControlName="height" />
+      </div>
+      <div class="form__field">
+        <label class="label">Weight in kg </label>
+        <input class="input" type="text" formControlName="weight" />
+      </div>
+      <div class="form__controls">
+        <button
+          (click)="onSubmit()"
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="loading || !isValuesChanged"
+        >
+          Save Changes
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<mat-spinner *ngIf="loading" class="spinner"></mat-spinner>

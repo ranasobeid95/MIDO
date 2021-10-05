@@ -1,0 +1,16 @@
+@import "./assets/scss/resets";
+@import "./assets/scss/variables";
+@import "./assets/scss/mixins";
+@import "./assets/scss/utilities";
+@import "./assets/scss/components/index";
+@import "./assets/scss/override";
+
+.auth-container {
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  top: 0;
+  left: 0;
+  background: linear-gradient($color-primary-dark, $color-primary-light);
+  z-index: -2;
+}

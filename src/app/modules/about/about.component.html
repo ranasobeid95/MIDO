@@ -1,0 +1,102 @@
+<div class="row container-style pt-8 about-container">
+  <div
+    class="ps-6 pe-6 about-container__main-header"
+    *ngIf="title === 'Health Status'"
+  >
+    <h1 class="about-container__main-header-title">mido</h1>
+
+    <app-collapse
+      header="mido is your pocket-size health-tracking and optimization system that helps you make lifestyle and nutrition choices based on your body's data"
+      content="The mido system uses a test card, that measures 10 biomarkers in your urine using colorimetric assays. These assays trigger a color change when the biomarker is detected in your urine, the larger  the color changes the higher the concentration of the biomarker The mido system is powered by computer vision and AI, which allow for rapid results and give you actionable tips on how to improve your health status mido allows for tracking of 5 different health parameters"
+    ></app-collapse>
+  </div>
+  <div
+    class="about-container__secondary__para-section"
+    *ngIf="title !== 'Health Status'"
+  >
+    <div
+      class="about-container__secondary__para-section-header"
+      *ngIf="parametersData"
+    >
+      <div class="about-container__secondary__para-section-header-title">
+        <h1>{{ title }}</h1>
+        <img [src]="parametersData.aboutIcon" />
+      </div>
+      <h2>
+        mido tracks how your {{ title | lowercase }} is affecting your health
+        using 3 tests:
+      </h2>
+      <ul class="about-container__secondary__para-section-header__scores">
+        <li
+          *ngFor="let item of parametersData.details; let i = index"
+          class="ul-item about-container__para-section-header__scores-item"
+        >
+          <img
+            [src]="item.icon"
+            [alt]="item.title"
+            class="
+              ul-item-icon
+              about-container__para-section-header__scores-item-icon
+            "
+          />
+          <h6 (click)="goTo(i)">{{ item.title }}</h6>
+        </li>
+      </ul>
+    </div>
+    <div
+      class="about-container__secondary__para-section-content"
+      *ngFor="let data of parametersData.details; let i = index"
+    >
+      <div [id]="'index' + i">
+        <app-about-card [data]="data"></app-about-card>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5 about-container__parameter-section">
+    <h1 class="title">Learn more about the health parameters</h1>
+
+    <p>
+      Click on the parameters below to learn more about how mido measures them
+    </p>
+
+    <ul class="mt-7 about-container__parameter-section__parameters">
+      <ng-container *ngFor="let key of parametersKeys">
+        <li
+          class="
+            ul-item-footer
+            about-container__parameter-section__parameters-item
+          "
+          [class.active-title]="parametersMain[key].name == title"
+          (click)="goToTop(parametersMain[key].name)"
+        >
+          <img
+            [src]="parametersMain[key].imgBlack"
+            [alt]="parametersMain[key].name"
+            class="
+              ul-item-icon
+              about-container__parameter-section__parameters-item-icon
+            "
+          />
+          <div>
+            {{ parametersMain[key].name }}
+          </div>
+        </li>
+      </ng-container>
+    </ul>
+
+    <button
+      mat-raised-button
+      [routerLink]="['/', ROUTES.RESULTS_PAGE]"
+      [queryParams]="title === 'Health Status' ? {} : { para: title }"
+      class="about-container__parameter-section__btn"
+      [ngClass]="{
+        'basic-style-btn': true,
+        'main-btn': true
+      }"
+      color="primary"
+    >
+      {{ title }} Results
+    </button>
+  </div>
+</div>

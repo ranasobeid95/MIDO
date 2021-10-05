@@ -1,0 +1,36 @@
+<div class="dropdown-menu">
+  <div class="dropdown-menu__header">
+    <span class="name">Welcome: {{ user?.firstName }}</span>
+  </div>
+  <ul class="dropdown-menu__list">
+    <li class="list-item">
+      <a (click)="closeDropDown()" [routerLink]="['/', ROUTES.PROFILE_PAGE]"
+        >Profile</a
+      >
+    </li>
+    <li class="list-item">
+      <a (click)="closeDropDown()" [routerLink]="['/', ROUTES.RESULTS_PAGE]"
+        >Results</a
+      >
+    </li>
+    <li class="list-item">
+      <a
+        (click)="closeDropDown()"
+        href="https://www.miprobes.shop"
+        target="_blank"
+        >Renew Subscription</a
+      >
+    </li>
+  </ul>
+  <div class="button_section">
+    <button
+      (click)="closeDropDown()"
+      mat-button
+      (click)="onLogout()"
+      class="dropdown-menu__footer"
+    >
+      <mat-icon class="icon">logout</mat-icon>
+      Logout
+    </button>
+  </div>
+</div>

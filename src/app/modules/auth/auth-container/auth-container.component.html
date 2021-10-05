@@ -1,0 +1,22 @@
+<div class="pt-5 pb-5 auth-container">
+  <div
+    [ngClass]="{
+      'auth-container__content': true,
+      'auth-container__addJustifyContent': !showLogo
+    }"
+  >
+    <img
+      class="mb-4 mt-6 auth-container__logo"
+      *ngIf="showLogo"
+      src="../../../../assets/images/mido-logo.png"
+    />
+    <ng-content select="[copy]"></ng-content>
+
+    <h2 class="auth-container__title">{{ title }}</h2>
+    <ng-content select="[copy-1]"></ng-content>
+
+    <div class="mb-5 auth-container__body">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

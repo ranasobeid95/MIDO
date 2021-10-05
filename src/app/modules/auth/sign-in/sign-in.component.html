@@ -1,0 +1,92 @@
+<app-auth-container class="sign-in-page" title="login">
+  <form
+    class="sign-in-page__form"
+    #form="ngForm"
+    [formGroup]="signInForm"
+    (ngSubmit)="submit()"
+  >
+    <mat-form-field
+      class="filed-style sign-in-page__form-field"
+      appearance="fill"
+    >
+      <input
+        type="email"
+        class="p-2 input-style sign-in-page__form-field__input"
+        matInput
+        formControlName="email"
+        placeholder="Email"
+      />
+      <mat-error
+        *ngIf="f.email.hasError('email') && !f.email.hasError('required')"
+      >
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="f.email.hasError('required')">
+        Email is required!
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field
+      class="filed-style sign-in-page__form-field"
+      appearance="fill"
+    >
+      <mat-icon
+        class="password-icon"
+        appShowHidePassword
+        [target]="pass"
+      ></mat-icon>
+      <input
+        class="p-2 input-style"
+        type="password"
+        autocomplete="off"
+        formControlName="password"
+        matInput
+        placeholder="Password"
+        #pass
+      />
+
+      <mat-error *ngIf="f.password.hasError('required')">
+        Password is required !
+      </mat-error>
+    </mat-form-field>
+
+    <mat-checkbox class="checkbox" color="primary">Remember Me</mat-checkbox>
+
+    <button
+      routerLink="/sign-in"
+      mat-raised-button
+      [ngClass]="{
+        'mt-3 basic-style-btn': true,
+        'disabled-btn ': form.invalid,
+        'main-btn': form.valid,
+        'btn-loading': submitted
+      }"
+      [disabled]="form.invalid"
+      color="primary"
+      type="submit"
+    >
+      LOGIN
+    </button>
+  </form>
+
+  <div class="sign-in-page__reset-password">
+    <button
+      [routerLink]="['/', ROUTES.SIGN_UP]"
+      class="my-3 basic-style-btn secondary-btn"
+      mat-raised-button
+    >
+      OR SIGNUP
+    </button>
+
+    <mat-error class="mb-1 invalid-data" *ngIf="!isNotExist && invalidPassword">
+      Wrong password. Try again or click Forgot password to reset it.
+    </mat-error>
+    <mat-error class="mb-1 invalid-data" *ngIf="isNotExist"
+      >Couldn't find your mido account!
+    </mat-error>
+
+    <a mt-3 [routerLink]="['/', ROUTES.RESET_PASSWORD]"
+      ><span class="sign-in-page__reset-password-msg">FORGOT PASSWORD?</span></a
+    >
+  </div>
+</app-auth-container>

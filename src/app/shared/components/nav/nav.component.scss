@@ -1,0 +1,232 @@
+@import "../../../../assets/scss/variables";
+@import "../../../../assets/scss/mixins";
+
+.header-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 110;
+  
+  &__content {
+    background-color: $color-accent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 110;
+    height: 8rem;
+
+    &__circles {
+      position: absolute;
+
+      &--center {
+        top: 0%;
+        right: 62%;
+
+        @include respond(big-desktop) {
+          right: 73%;
+        }
+
+        @include respond(tab-port) {
+          right: 50%;
+          top: 28%;
+        }
+
+        @include respond(big-desktop) {
+          right: 60%;
+          top: 30%;
+        }
+      }
+    }
+  }
+
+  .menu_icon {
+    color: $bg-body;
+
+    .mat-icon {
+      font-size: 3rem !important;
+    }
+  }
+  &__left-items {
+    .header-container-logo {
+      img {
+        height: 8rem;
+        
+        @include respond(big-desktop) {
+          height: 5rem;
+        }
+      }
+    }
+
+    @include respond(mobile) {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  &__right-items {
+    display: flex;
+    justify-content: flex-end;
+
+    .navbar-nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      list-style-type: none;
+      .sign-up {
+        border: 0.1rem solid $white-color;
+        border-radius: 0.3rem;
+        padding: 0.6rem;
+
+        &:hover {
+          background-color: $color-primary;
+          border-color: $color-primary;
+
+          a {
+            color: $white-color !important;
+          }
+        }
+      }
+      .nav-item {
+        &:not(:last-child) {
+          margin-right: 3rem;
+        }
+
+        @include respond(tab-port) {
+          margin-right: 1.3rem !important;
+        }
+
+        .nav-link {
+          text-decoration: none;
+          color: $white-color;
+          text-transform: uppercase;
+          text-decoration: none;
+          font-size: 1.6rem;
+
+          @include respond(tab-port) {
+            font-size: 1.7rem;
+          }
+          @include respond(big-desktop) {
+            font-size: 2.6rem;
+          }
+
+          &:hover {
+            color: $hover-color;
+          }
+
+          span {
+            font-weight: 400;
+          }
+        }
+      }
+    }
+    .avatar-section {
+      display: flex;
+      margin-left: 2rem !important;
+      justify-content: flex-end;
+      align-items: center;
+      display: flex !important;
+      align-items: center !important;
+      background-color: $color-accent;
+      border: none;
+
+      .avatar {
+        height: 5rem;
+        width: 5rem;
+        border-radius: 50%;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.7;
+        }
+
+        @include respond(big-desktop) {
+          height: 7rem;
+          width: 7rem;
+        }
+      }
+      .opened-arrow {
+        transform: rotate(180deg) !important;
+      }
+      .mat-icon {
+        color: $bg-body;
+        cursor: pointer;
+        width: auto !important;
+        height: initial !important;
+        font-size: 3rem !important ;
+
+        transition: transform 0.3s ease-in-out;
+
+        @include respond(big-desktop) {
+          font-size: 5rem !important ;
+          height: inherit !important;
+          width: auto !important;
+        }
+      }
+
+      .btn_signIn {
+        color: $white-color !important;
+      }
+    }
+  }
+
+  .dropDown {
+    position: absolute;
+    right: 1.5rem;
+    z-index: 9;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: all 0.6s;
+  }
+
+  .show-dropdown {
+    opacity: 1;
+    transform: translateY(0) !important;
+  }
+
+  app-circles {
+    z-index: -1;
+  }
+}
+
+.side-nav-wrapper {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.overlay {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 20;
+}
+
+.hide-side {
+  transform: translateX(-100%);
+  transition: all 0.6s;
+}
+
+.show-side {
+  transform: translateX(0);
+  transition: all 0.6s;
+}
+
+.show-overlay {
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.6s;
+}
+
+.hide-overlay {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.6s;
+}

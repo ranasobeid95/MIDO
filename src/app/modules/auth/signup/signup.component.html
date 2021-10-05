@@ -1,0 +1,115 @@
+<app-auth-container>
+  <div class="mt-3">
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)" [formGroup]="signupForm">
+      <mat-form-field class="filed-style" appearance="fill">
+        <input
+          class="p-2 input-style"
+          matInput
+          type="text"
+          placeholder="first name"
+          formControlName="firstName"
+        />
+        <mat-error>First name is required!</mat-error>
+      </mat-form-field>
+      <mat-form-field class="filed-style" class="filed-style" appearance="fill">
+        <input
+          class="p-2 input-style"
+          matInput
+          type="text"
+          placeholder="last name"
+          formControlName="lastName"
+        />
+        <mat-error>Last name is required!</mat-error>
+      </mat-form-field>
+      <mat-form-field class="filed-style" appearance="fill">
+        <input
+          class="p-2 input-style"
+          matInput
+          type="email"
+          placeholder="email"
+          formControlName="email"
+        />
+        <mat-error *ngIf="f.email?.hasError('required')"
+          >Email is required!</mat-error
+        >
+        <mat-error *ngIf="f.email?.hasError('email')">Invalid Email!</mat-error>
+      </mat-form-field>
+      <mat-form-field class="filed-style" appearance="fill">
+        <mat-icon
+          class="password-icon"
+          appShowHidePassword
+          [target]="pass"
+        ></mat-icon>
+        <input
+          class="p-2 input-style"
+          matInput
+          type="password"
+          placeholder="password"
+          formControlName="password"
+          autocomplete="on"
+          #pass
+        />
+        <mat-hint
+          >Should be at least 6 characters include(Capital & number)</mat-hint
+        >
+        <mat-error *ngIf="f.password.hasError('required')"
+          >Password is required</mat-error
+        >
+        <mat-error
+          *ngIf="
+            !f.password.hasError('required') &&
+            f.password.hasError('passwordWeak')
+          "
+          >Password must be at least 6 characters include(Capital & number)
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="filed-style" appearance="fill">
+        <mat-icon
+          class="password-icon"
+          appShowHidePassword
+          [target]="passConf"
+        ></mat-icon>
+        <input
+          class="p-2 input-style"
+          matInput
+          type="password"
+          placeholder="confirm password"
+          formControlName="confirmPassword"
+          autocomplete="on"
+          #passConf
+        />
+        <mat-error>Password & confirm didn't match. Try again</mat-error>
+      </mat-form-field>
+
+      <mat-error *ngIf="error">{{ error }}</mat-error>
+
+      <button
+        type="submit"
+        mat-raised-button
+        [ngClass]="{
+          'mt-3 basic-style-btn': true,
+          'disabled-btn ': form.invalid,
+          'main-btn': form.valid,
+          'btn-loading': loading
+        }"
+        color="primary"
+        [disabled]="form.invalid"
+      >
+        Sign Up
+      </button>
+
+      <button
+        [routerLink]="['/', ROUTES.SIGN_IN]"
+        mat-stroked-button
+        [ngClass]="{
+          'mt-3 basic-style-btn': true,
+          'secondary-btn': true
+        }"
+        color="primary"
+        type="button"
+      >
+        Or Login
+      </button>
+    </form>
+  </div>
+</app-auth-container>

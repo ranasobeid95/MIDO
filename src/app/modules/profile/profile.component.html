@@ -1,0 +1,114 @@
+<div class="row container-style profile">
+  <div class="profile__side profile__left">
+    <div class="profile__img-box">
+      <img class="user-img" [src]="profilePhoto" alt="user image" />
+      <div>
+        <h3 class="my-2 user-name">{{ userName }}</h3>
+        <button
+          (click)="goEdit()"
+          class="btn-edit"
+          mat-raised-button
+          color="primary"
+        >
+          Edit profile
+        </button>
+      </div>
+    </div>
+    <div class="profile__info">
+      <h3>Main Info</h3>
+      <span class="line"></span>
+
+      <div class="message" *ngIf="!loading && !isThereValue">
+        <h3 class="title">
+          mido has no information on your diet choices and health goals
+        </h3>
+        <small class="title-sub"
+          >Help mido get to know you better by editing your profile!
+        </small>
+      </div>
+
+      <div class="list" *ngIf="!loading && isThereValue">
+        <div *ngIf="!!mainInfoValues['dateOfBirth']" class="item">
+          <span>Years old: </span>
+          {{ mainInfoValues["dateOfBirth"] }}
+        </div>
+
+        <div *ngIf="!!mainInfoValues['weight']" class="item">
+          <span>Weight: </span>
+          {{ mainInfoValues["weight"] }}kg
+        </div>
+
+        <div *ngIf="!!mainInfoValues['height']" class="item">
+          <span>Height: </span>
+          {{ mainInfoValues["height"] }}cm
+        </div>
+
+        <div *ngIf="!!mainInfoValues['healthGoal']" class="item">
+          <span>Main health goal: </span>
+          {{ mainInfoValues["healthGoal"] }}
+        </div>
+
+        <div *ngIf="!!mainInfoValues['diet']" class="item">
+          <span>Diet of choice: </span>
+          {{ mainInfoValues["diet"] }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile__side profile__right" *ngIf="!loading">
+    <div class="profile__result">
+      <div *ngIf="results.length > 0">
+        <h3 class="title">Your Average Health Status:</h3>
+        <small class="date"
+          ><span>Range of date:</span>
+          {{ results[0]?.createdAt | date: "MMM d,y" }}
+          {{ " - " }}
+          {{ results[results.length - 1]?.createdAt | date: "MMM d,y" }}
+        </small>
+        <p *ngIf="lastTest" class="result-hint">
+          <span>Note: </span>{{ lastTest }}
+        </p>
+      </div>
+
+      <div class="tests-no" *ngIf="results.length === 0">
+        <p class="tests-no-message mb-5">{{ message }}</p>
+        <button
+          *ngIf="isNoTests"
+          [routerLink]="['/', ROUTES.NEW_TEST_PAGE]"
+          mat-raised-button
+          color="primary"
+        >
+          Try your first test now!
+        </button>
+      </div>
+
+      <app-status-card
+        *ngIf="results.length > 0"
+        class="status-card"
+        [result]="cardInfo"
+      ></app-status-card>
+    </div>
+
+    <ng-container *ngIf="results.length > 0">
+      <div class="profile__progress">
+        <h3 class="title">Health Score Average</h3>
+
+        <app-chart-radar [resultsData]="chartResults"> </app-chart-radar>
+      </div>
+
+      <div class="btn-detail-wrap">
+        <button
+          (click)="goDetail()"
+          class="btn-detail"
+          mat-raised-button
+          color="primary"
+        >
+          View results in detail
+          <mat-icon>arrow_right_alt</mat-icon>
+        </button>
+      </div>
+    </ng-container>
+  </div>
+  <mat-spinner *ngIf="loading" class="spinner"></mat-spinner>
+</div>

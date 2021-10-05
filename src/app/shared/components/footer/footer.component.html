@@ -1,0 +1,87 @@
+<footer class="footer">
+  <div class="row footer__content">
+    <div class="footer__content--overview section">
+      <div>
+        <img
+          class="footer__mido-logo"
+          src="../../../../assets/images/mido-logo.png"
+          alt="mido Logo"
+        />
+      </div>
+
+      <div>
+        <img
+          class="footer__miprobes-logo"
+          src="../../../../assets/images/mibropes-logo.png"
+          alt="miProbes Logo"
+        />
+      </div>
+      <p class="footer__p">
+        MiProbes program, products and services are intended only for
+        maintaining and encouraging a healthy life-style and are unrelated to
+        the diagnosis, cure, medication, prevention or treatment of any disease
+        or condition
+      </p>
+    </div>
+
+    <div class="footer__content--contact section">
+      <h3 class="footer__title">Contact Us</h3>
+      <ul class="list">
+        <li class="item">
+          <mat-icon class="icon">location_on</mat-icon>
+          <span>
+            MiProbes Biotechnologies UG<br />
+            Lohmühlenstraße 65<br />
+            Berlin 12435<br />
+            Germany<br />
+          </span>
+        </li>
+        <li class="item">
+          <mat-icon class="icon">mail</mat-icon>
+          info@miprobes.de
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer__content--follow section">
+      <h3 class="footer__title">Follow Us</h3>
+      <!-- 
+        insta
+        facebook
+        twitter
+        linkedIn
+       -->
+      <a
+        class="link"
+        href="https://www.instagram.com/miprobes/"
+        target="_blank"
+      >
+        <mat-icon class="icon" svgIcon="Instagram"></mat-icon>
+      </a>
+      <a
+        class="link"
+        href="https://www.facebook.com/miprobesbio"
+        target="_blank"
+      >
+        <mat-icon class="icon" svgIcon="faceicon"></mat-icon>
+      </a>
+      <a class="link" href="https://twitter.com/miprobesbio" target="_blank">
+        <mat-icon class="icon" svgIcon="twitter"></mat-icon>
+      </a>
+      <a
+        class="link"
+        href="https://www.linkedin.com/company/miprobes-biotechnologies/"
+        target="_blank"
+      >
+        <mat-icon class="icon" svgIcon="linked_in"></mat-icon>
+      </a>
+    </div>
+  </div>
+  <div class="footer__copy-right">
+    <p>&copy; {{ year | date: "y" }} MiProbes. All Right Reserved</p>
+  </div>
+  <app-circles
+    [size]="35"
+    class="footer__circles footer__circles--center"
+  ></app-circles>
+</footer>

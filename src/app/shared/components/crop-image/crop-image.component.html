@@ -1,0 +1,46 @@
+<div class="crop">
+  <div class="crop__header">
+    <h3 class="crop-title">Crop your new Profile picture</h3>
+    <button (click)="closeCrop()" mat-icon-button>
+      <mat-icon class="crop-close">close</mat-icon>
+    </button>
+  </div>
+  <div class="crop__content">
+    <image-cropper
+      class="image-cropper"
+      [imageChangedEvent]="inputEvent"
+      [maintainAspectRatio]="true"
+      [aspectRatio]="4 / 4"
+      format="jpeg"
+      [imageQuality]="50"
+      (imageLoaded)="imageLoaded()"
+      (imageCropped)="imageCropped($event)"
+      (cropperReady)="cropperReady()"
+      (loadImageFailed)="loadImageFailed()"
+      [roundCropper]="true"
+    ></image-cropper>
+    <mat-spinner
+      class="corp-spinner"
+      [strokeWidth]="5"
+      value="uploading photo"
+      *ngIf="loading"
+    ></mat-spinner>
+  </div>
+  <div class="crop__footer">
+    <button
+      (click)="submitPhoto()"
+      color="primary"
+      mat-raised-button
+      [disabled]="submitLoading"
+    >
+      Set new profile picture
+      <mat-spinner
+        *ngIf="submitLoading"
+        class="crop-submit-spinner"
+        [color]="'#fff'"
+        [strokeWidth]="3"
+        [diameter]="35"
+      ></mat-spinner>
+    </button>
+  </div>
+</div>

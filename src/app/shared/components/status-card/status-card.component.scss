@@ -1,0 +1,108 @@
+@import "../../../../assets/scss/variables";
+@import "~/src/assets/scss/mixins";
+
+.status-card-container {
+  width: 21.3rem;
+  height: 27.3rem;
+  border-radius: 2rem;
+  background-color: $color-primary;
+  box-shadow: $box-shadow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  @include respond(mobile) {
+    margin: 0 !important;
+    justify-content: space-between;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: $bg-body;
+    }
+    &__icon {
+      width: 3.8rem;
+      height: 3.8rem;
+      margin-left: 2rem;
+
+      &:hover {
+        transform: rotate(45deg);
+        transition-duration: 0.9s;
+      }
+    }
+  }
+
+  &__change {
+    background-color: #25af88;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 82%;
+    right: 80%;
+    box-shadow: $box-shadow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $color-accent;
+    font-size: 1.6rem;
+    font-weight: 600;
+    cursor: default;
+
+    .signal {
+      margin-right: 0.5rem;
+    }
+
+    .noChange {
+      margin-right: 0;
+    }
+  }
+
+  &__noChange {
+    background-color: #3da6b4 !important;
+    &:hover {
+      background-color: #389aa7 !important;
+    }
+  }
+  &__increase {
+    background-color: #78c000 !important;
+    &:hover {
+      background-color: #6daf02 !important;
+    }
+  }
+  &__decrease {
+    background-color: #e06666 !important;
+    &:hover {
+      background-color: #bd5454 !important;
+    }
+  }
+
+  .secondary_perecnt {
+    .percent-text {
+      color: $bg-body;
+      font-size: 3.6rem;
+      font-weight: 500;
+    }
+  }
+}
+
+.secondary {
+  width: 13.1rem;
+  height: 15.1rem;
+  padding: 1rem !important;
+  background-color: $color-primary-light;
+  .status-card-container__content {
+    margin-bottom: 1rem;
+    &__title {
+      font-size: 1.5rem !important;
+      text-align: center;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+<div (click)="toggleClick()" class="select">
+  <label class="select__label">
+    <input
+      class="select__input"
+      type="text"
+      readonly
+      [value]="selectedValue || defaultValue"
+      [placeholder]="label"
+    />
+
+    <mat-icon class="select__icon">keyboard_arrow_down</mat-icon>
+    <ul *ngIf="isSelected" class="select__list">
+      <li
+        ngModule
+        (click)="onChooseValue(item)"
+        #item
+        class="select__item"
+        *ngFor="let option of options"
+      >
+        {{ option }}
+      </li>
+    </ul>
+  </label>
+</div>

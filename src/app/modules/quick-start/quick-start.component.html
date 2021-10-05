@@ -1,0 +1,40 @@
+<div class="row container-style pt-8 quick-start-container main-content">
+  <p class="header">
+    Hello {{ userName }} here's a quick guide to get you started!
+  </p>
+  <div class="quick-start-container__content">
+    <div
+      class="card-step"
+      *ngFor="let step of quickStart; let i = index"
+      [class.isActive]="selectedStep === i"
+      [class.first]="selectedStep === 0"
+      (click)="showContent(i)"
+    >
+      <span class="index">{{ i + 1 }}</span>
+      <img [src]="step.img" class="card-img" />
+      <span class="card-header">{{ step.content }}</span>
+    </div>
+    <div class="card-step flex-b"></div>
+  </div>
+
+  <div id="content">
+    <div
+      [class.isSelected]="selectedStep === i"
+      *ngFor="let step of quickStart; let i = index"
+      class="quick-start-container__content-card"
+    >
+      <p class="text" *ngFor="let content of step.details">
+        <span *ngIf="content.header" class="header-content"
+          >{{ content.header }}:</span
+        >
+        {{ content.content }}
+      </p>
+      <div class="more-info">
+        <a [routerLink]="step.link">
+          {{ step.linkIcon }}
+        </a>
+        <mat-icon>{{ step.icon }}</mat-icon>
+      </div>
+    </div>
+  </div>
+</div>

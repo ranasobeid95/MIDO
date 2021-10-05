@@ -1,0 +1,92 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "projects/**/*"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2020
+  }, 
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "parserOptions": {
+        "project": [
+          "tsconfig.json"
+        ],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "@angular-eslint/no-empty-lifecycle-method": 0,
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "no-unused-vars": 0,
+        "@typescript-eslint/quotes": [
+          "error",
+          "single",
+          {
+            "allowTemplateLiterals": true
+          }
+        ],
+        "no-multiple-empty-lines": ["error", { "max": 1, "maxBOF": 1 }],
+        "no-trailing-spaces":  ["error", { "skipBlankLines": true }],
+        "semi": ["error", "always"],
+        "prettier/prettier": [ 
+          "error", 
+          { 
+            "trailingComma": "es5",
+            "endOfLine": "auto"
+          } 
+        ] 
+    
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "excludedFiles": ["*inline-template-*.component.html"],
+      "parser": "@angular-eslint/template-parser",
+      "parserOptions": {
+        "project": "./tsconfig.app.json",
+        "ecmaVersion": 2020,
+        "sourceType": "module"
+      },
+      "plugins": ["@angular-eslint/template"],
+
+      "extends": [
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "prettier/prettier": [
+          "error", 
+          { 
+            "parser": "angular",
+            "endOfLine": "auto"
+          }
+        ]
+       
+      }
+    }
+  ]
+}
+

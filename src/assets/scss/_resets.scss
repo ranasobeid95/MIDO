@@ -1,0 +1,35 @@
+@import "./variables";
+@import "./mixins";
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  font-family: $global-font-family;
+}
+
+html {
+  font-size: 62.5%;
+
+  &:hover {
+    cursor: default !important;
+  }
+
+  @include respond(big-desktop) {
+    font-size: 77%;
+  }
+}
+
+body {
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}

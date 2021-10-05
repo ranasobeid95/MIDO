@@ -1,0 +1,72 @@
+@import "../../../../assets/scss/variables";
+
+.dropdown-menu {
+  background-color: $color-accent;
+  height: 330px;
+  width: 260px;
+  border-radius: 0rem 0rem 0.3rem 0.3rem;
+  box-shadow: $box-shadow;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    color: $white-color;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    font-size: 1.7rem;
+    border-bottom: 0.1rem solid;
+    .name {
+      margin-left: 1.5rem;
+      cursor: default;
+    }
+  }
+
+  &__list {
+    flex: 3;
+    list-style-type: none;
+    border-bottom: 0.1rem solid $white-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .list-item {
+      padding: 1.5rem;
+      display: flex;
+
+      a {
+        flex: 1;
+        text-decoration: none;
+        color: $white-color;
+        font-size: 1.7rem;
+      }
+      &:hover {
+        cursor: pointer;
+        background-color: #36393f;
+      }
+    }
+  }
+
+  .button_section {
+    width: 100%;
+    color: $white-color !important;
+    display: flex;
+    flex: 1;
+
+    button {
+      display: flex;
+      flex: 1 !important;
+      align-items: center;
+      &:hover {
+        background-color: #36393f;
+      }
+    }
+  }
+}
+
+.hide-menu {
+  transition: height 0.3s ease-in-out;
+}
+
+.show-menu {
+  height: calc(15 * 2.2rem);
+  transition: height 0.3s ease-in-out;
+}

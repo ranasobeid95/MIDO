@@ -1,0 +1,59 @@
+<div class="home container-style">
+  <div class="mb-8">
+    <div *ngIf="userName" class="home__copy">
+      Hello <span>{{ userName }}</span
+      >,
+    </div>
+    <h1 *ngIf="!userName" class="home__title">Mido</h1>
+    <h2 class="home__copy">
+      {{
+        userName
+          ? " How can mido help you today?"
+          : "A health tracking and optimization system for all"
+      }}
+    </h2>
+  </div>
+  <div class="home__content">
+    <div class="home__content__side home__content__side--left">
+      <h3 class="title">Upload new test photo</h3>
+      <span class="lastDate" *ngIf="createdAt"
+        >Last photo received on {{ createdAt | date: "MMM d, y, h:mm a" }}</span
+      >
+      <div [routerLink]="['/', ROUTES.NEW_TEST_PAGE]" class="img img-1"></div>
+      <a
+        *ngIf="userName"
+        class="button-link"
+        [routerLink]="['/', ROUTES.NEW_TEST_PAGE]"
+        >Upload new test photo</a
+      >
+
+      <a
+        class="button-link"
+        *ngIf="!userName"
+        [routerLink]="[ROUTES.LANDING_PAGE]"
+        >Upload new test photo</a
+      >
+    </div>
+    <div class="home__content__side">
+      <h3 class="title">View your progression</h3>
+      <span class="lastDate" *ngIf="createdAt"
+        >Last test results updated on
+        {{ createdAt | date: "MMM d, y, h:mm a" }}</span
+      >
+      <div [routerLink]="['/', ROUTES.RESULTS_PAGE]" class="img img-2"></div>
+      <a
+        class="button-link"
+        *ngIf="userName"
+        [routerLink]="['/', ROUTES.RESULTS_PAGE]"
+        >View Results</a
+      >
+
+      <a
+        class="button-link"
+        *ngIf="!userName"
+        [routerLink]="[ROUTES.LANDING_PAGE]"
+        >View Results</a
+      >
+    </div>
+  </div>
+</div>

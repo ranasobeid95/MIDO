@@ -1,0 +1,12 @@
+<ng-container *ngIf="resultsData">
+  <div style="display: block">
+    <canvas
+      baseChart
+      [datasets]="chartDataset"
+      [labels]="chartLabels"
+      [options]="chartOptions"
+      [chartType]="'radar'"
+    >
+    </canvas>
+  </div>
+</ng-container>

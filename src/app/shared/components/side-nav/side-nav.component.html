@@ -1,0 +1,133 @@
+<div class="side-nav">
+  <button (click)="onCloseSideNav()" class="close-btn">
+    <mat-icon class="close-btn__icon">close</mat-icon>
+  </button>
+  <div class="side-nav__header" *ngIf="user">
+    <img
+      class="side-nav__img"
+      [src]="user?.profilePhoto || defaultImage"
+      alt="user image"
+    />
+    <h3>{{ user?.firstName + " " + user?.lastName }}</h3>
+    <small class="email">{{ user?.email }}</small>
+  </div>
+  <div class="side-nav__header" *ngIf="!user">
+    <img
+      class="side-nav__img-mido"
+      src="../../../../assets/images/mido_logo_empty.png"
+      alt="user image"
+    />
+  </div>
+
+  <span class="line"></span>
+
+  <ul class="side-nav__list">
+    <li>
+      <a
+        (click)="onCloseSideNav()"
+        [routerLink]="['/', ROUTES.HOME_PAGE]"
+        class="side-nav__link"
+      >
+        <mat-icon class="icon">home</mat-icon>
+        <span class="text">Home</span>
+      </a>
+    </li>
+    <li>
+      <a
+        (click)="onCloseSideNav()"
+        [routerLink]="['/', ROUTES.QUICK_START]"
+        class="side-nav__link"
+      >
+        <mat-icon class="icon">stars</mat-icon>
+        <span class="text">Quick start</span>
+      </a>
+    </li>
+    <li>
+      <a
+        (click)="onCloseSideNav()"
+        [routerLink]="['/', ROUTES.RESULTS_PAGE]"
+        class="side-nav__link"
+      >
+        <mat-icon class="icon">insert_chart</mat-icon>
+        <span class="text">Results</span>
+      </a>
+    </li>
+    <li
+      [class.item-extend]="showNested"
+      (click)="toggleNested()"
+      class="item"
+      *ngIf="user"
+    >
+      <a class="side-nav__link">
+        <mat-icon class="icon">account_circle</mat-icon>
+        <span class="text">Profile</span>
+        <mat-icon [ngClass]="{ 'icon-rotate': showNested }" class="icon-more"
+          >expand_more</mat-icon
+        >
+      </a>
+
+      <div
+        [ngClass]="{
+          'show-nested': showNested
+        }"
+        class="list-nested"
+      >
+        <a
+          (click)="onCloseSideNav()"
+          [routerLink]="['/', ROUTES.PROFILE_PAGE]"
+          class="side-nav__link"
+          >Overview</a
+        >
+        <a
+          (click)="onCloseSideNav()"
+          [routerLink]="[ROUTES.SETTING_ACCOUNT, 'account']"
+          class="side-nav__link"
+          >Edit account</a
+        >
+        <a
+          (click)="onCloseSideNav()"
+          [routerLink]="[ROUTES.SETTING_ACCOUNT, 'password']"
+          class="side-nav__link"
+          >Change Password</a
+        >
+      </div>
+    </li>
+
+    <li>
+      <a
+        (click)="onCloseSideNav()"
+        [routerLink]="['/', ROUTES.NEW_TEST_PAGE]"
+        class="side-nav__link"
+      >
+        <mat-icon class="icon">add_photo_alternate</mat-icon>
+        <span class="text">New Test</span>
+      </a>
+    </li>
+  </ul>
+
+  <span class="line"></span>
+
+  <div class="side-nav__footer">
+    <button
+      (click)="onCloseSideNav()"
+      class="side-nav__btn"
+      [routerLink]="['/', ROUTES.ABOUT_MIDO]"
+    >
+      <mat-icon class="icon">info</mat-icon>
+      About Mido
+    </button>
+    <button (click)="onLogout()" class="side-nav__btn" *ngIf="user">
+      <mat-icon class="icon">logout</mat-icon>
+      Logout
+    </button>
+
+    <button
+      class="side-nav__btn"
+      *ngIf="!user"
+      [routerLink]="['/', ROUTES.SIGN_IN]"
+    >
+      <mat-icon class="icon">login</mat-icon>
+      Sign in
+    </button>
+  </div>
+</div>

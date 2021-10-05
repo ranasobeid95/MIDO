@@ -1,0 +1,146 @@
+@import "../../../../assets/scss/variables";
+@import "../../../../assets/scss/mixins";
+
+.footer {
+  background-color: $color-accent;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  color: #fff;
+  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.7);
+  position: relative;
+  overflow: hidden;
+  padding-top: 2rem;
+  height: 30rem;
+
+  @media (max-width: 780px){
+    height: 33rem;
+  }
+
+  @include respond(mobile){
+    height: 52rem;
+  }
+
+
+  &__title {
+    margin-bottom: 3rem;
+    font-weight: 500;
+    font-size: 1.8rem;
+
+    @include respond(mobile) {
+      margin-bottom: 1rem;
+      font-size: 1.6rem;
+    }
+  }
+
+  &__content {   
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+    z-index: 3;
+    position: relative;
+    overflow: hidden;
+
+    @include respond(mobile) {
+      flex-direction: column;
+    }
+
+    .section {
+      width: 25%;
+      &:not(:last-child) {
+        margin-right: 4%;
+        @include respond(mobile){
+          margin-right: 0;
+          margin-bottom: 2rem;
+        }
+      }
+
+      @include respond(mobile) {
+        width: 100%;
+      }
+    }
+
+    &--overview {
+      flex-grow: 2;
+    }
+
+    &--contact {
+      .item {
+        display: flex;
+        align-items: flex-start;
+        &:not(:last-child) {
+          margin-bottom: 1rem;
+        }
+      }
+      .icon {
+        margin-right: 1rem;
+      }
+    }
+
+    &--follow {
+
+      .link:not(:last-child) {
+        margin-right: 1rem;
+      }
+      .icon {
+        color: #fff;
+        transition: all .4s;
+        width: 1.6rem !important;
+        height: 1.6rem !important;
+
+        &:hover,
+        &:active {
+          color: $color-primary-light;
+        }
+      }
+    }
+  }
+
+  &__mido-logo {
+    width: 15rem;
+  }
+
+  &__miprobes-logo {
+    width: 10rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  &__p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.6em;
+  }
+
+  &__copy-right {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 2rem;
+
+    p {
+      font-size: 1.4rem;
+    }
+
+    @include respond(mobile) {
+      padding: 0 0 1rem 0;
+    }
+  }
+
+  &__circles {
+    position: absolute;
+
+    &--center {
+      top: 20%;
+      left: 90%;
+    }
+  }
+}
+
+.list {
+  list-style: none;
+}

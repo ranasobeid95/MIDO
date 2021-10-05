@@ -1,0 +1,118 @@
+<div class="row new-test">
+  <h2 class="new-test__title">Upload your new mido-card photo</h2>
+
+  <div class="new-test__content">
+    <div class="new-test__content__registration">
+      <app-upload-image
+        (imgBlobEvent)="onChangeImage($event)"
+      ></app-upload-image>
+
+      <div class="date-registration">
+        <h4>Test date and time</h4>
+
+        <form #form="ngForm" class="form-date">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <input
+              class="date-input"
+              matInput
+              [min]="minDate"
+              [max]="maxDate"
+              [matDatepicker]="picker"
+              [(ngModel)]="dateUploadTest"
+              [ngModelOptions]="{ standalone: true }"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="time-input" appearance="fill">
+            <input
+              type="time"
+              matInput
+              [(ngModel)]="timeUploadTest"
+              [ngModelOptions]="{ standalone: true }"
+            />
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+
+    <div class="new-test__questions">
+      <h3 class="new-test__questions__title">
+        Help Mido Get To Know You Better<br />
+        During This Testing Period...
+      </h3>
+
+      <app-question-card-radio
+        question="1- What was your approximate water intake in glasses per day"
+        [radioNumber]="12"
+        [customRadio]="true"
+        unit="glass"
+        (answerChosen)="selectAnswer($event, 'glasses')"
+      ></app-question-card-radio>
+
+      <app-question-card-radio
+        question="2- How many days did you exercise"
+        hint="20+ mins of moderate to strenuous activity counts as a day
+        "
+        [radioNumber]="8"
+        [customRadio]="false"
+        unit="day"
+        (answerChosen)="selectAnswer($event, 'days')"
+      ></app-question-card-radio>
+
+      <app-question-card-radio
+        question="3. How many  alcoholic drinks did you have during this testing period
+        "
+        [radioNumber]="12"
+        [customRadio]="true"
+        unit="drink"
+        (answerChosen)="selectAnswer($event, 'drinks')"
+      ></app-question-card-radio>
+
+      <app-question-card-select
+        (dietChosen)="selectAnswer($event, 'diet')"
+      ></app-question-card-select>
+    </div>
+  </div>
+
+  <div class="new-test__submit-wrap">
+    <button
+      (click)="onSubmit()"
+      class="new-test__submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="!imgBlob"
+    >
+      <mat-hint class="hint" *ngIf="!imgBlob"
+        >You must to upload your mido-card to submit</mat-hint
+      >
+      Submit New Test
+    </button>
+  </div>
+  <mat-spinner *ngIf="loading" class="test-spinner"></mat-spinner>
+  <div *ngIf="loading || getResults" class="test-overlay"></div>
+  <div *ngIf="getResults" class="card test-popup">
+    <h3 class="title">YOU HAVE SUCCESSFULLY SUBMITTED YOUR PHOTO!</h3>
+    <small class="title-sub">Your results are on their way! </small>
+    <div class="mt-5">
+      <button
+        (click)="onRedirect('home')"
+        class="me-4"
+        color="primary"
+        mat-raised-button
+      >
+        Go Home
+      </button>
+      <button (click)="onRedirect('result')" color="primary" mat-raised-button>
+        Go Results
+      </button>
+    </div>
+  </div>
+  <div [class.show-error]="error" class="error">
+    <p class="message">{{ error }}</p>
+  </div>
+</div>

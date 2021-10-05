@@ -1,0 +1,194 @@
+<div class="container-chart">
+  <div
+    (click)="closePopup()"
+    [class.show-overlay]="!!selectedChoice && selectedChoice !== 'All of tests'"
+    class="overlay"
+  ></div>
+  <div #popupRelated class="container-chart__content">
+    <div class="container-chart__header">
+      <div class="container-chart__filter">
+        <h3 class="container-chart__title">Filter Results By:</h3>
+
+        <app-select
+          class="container-chart__select"
+          [options]="options"
+          label="Choose"
+          (selectedChanged)="onSelectOptions($event)"
+        >
+        </app-select>
+      </div>
+
+      <div class="container-chart__info-box">
+        <h3 class="container-chart__title">This graph represents data for:</h3>
+        <p><span class="span">Range of date:&nbsp; </span>{{ rangeOfDate }}</p>
+        <p>
+          <span class="span">Latest number of test:&nbsp; </span
+          >{{ numberOfTests }}
+        </p>
+      </div>
+    </div>
+
+    <div class="container-chart__body">
+      <div class="noResults" *ngIf="!filteredResults.length">
+        No Results For {{ selectedOption }}
+      </div>
+      <ng-container *ngIf="filteredResults.length">
+        <div *ngIf="type === 'bar'" class="chart">
+          <app-chart-bar
+            chart
+            [dataset]="ChartBarInputs.datasets"
+            [labels]="ChartBarInputs.labels"
+          ></app-chart-bar>
+        </div>
+
+        <div *ngIf="type === 'line'" class="chart">
+          <app-chart-line
+            *ngIf="filteredResults.length > 1"
+            chart
+            [dataset]="ChartLineInputs.datasets"
+            [labels]="ChartLineInputs.labels"
+          ></app-chart-line>
+          <app-chart-bar
+            *ngIf="filteredResults.length === 1"
+            chart
+            [dataset]="ChartLineInputs.datasets"
+            [labels]="ChartLineInputs.labels"
+          ></app-chart-bar>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- Handle popup model -->
+  <!-- Need Refactor to move these popup into separated component -->
+  <ng-container *ngIf="!!selectedChoice && selectedChoice !== 'All of tests'">
+    <!-- Number Of Tests -->
+    <div
+      appDetectScroll
+      [parentEl]="popupRelated"
+      (closed)="closePopup()"
+      class="popup"
+      *ngIf="selectedChoice === 'Number of tests'"
+    >
+      <div class="chart-card">
+        <p class="chart-card__title">
+          You Have <span>{{ chartResults.length }}</span> Tests
+        </p>
+
+        <p class="my-3">
+          Choose number of test to show you progression By graph
+        </p>
+
+        <div class="chart-card__body">
+          <div class="input-wrap">
+            <input readonly type="text" [value]="selectedNumber" />
+            <div class="arrow">
+              <mat-icon aria-hidden="false" (click)="up()">
+                expand_less
+              </mat-icon>
+              <mat-icon aria-hidden="false" (click)="down()">
+                expand_more
+              </mat-icon>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-card__footer">
+          <button mat-raised-button (click)="closePopup()">Cancel</button>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            (click)="closePopup('numberOfTests')"
+          >
+            APPLY
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      appDetectScroll
+      [parentEl]="popupRelated"
+      (closed)="closePopup()"
+      class="popup"
+      *ngIf="selectedChoice === 'Range of tests'"
+    >
+      <div class="picker-card">
+        <div class="picker-card__body">
+          <ul class="picker-card__body__left">
+            <li
+              [class.isActive]="selectedOption === option"
+              class="item"
+              *ngFor="let option of listOfDateOption"
+              (click)="HandleListOfDate(option)"
+            >
+              {{ option }}
+            </li>
+          </ul>
+
+          <div class="picker-card__body__right">
+            <div class="range-wrap">
+              <p class="range-text">
+                Selected Range:
+                <span>{{
+                  pickerSelectedRange.length < 2
+                    ? (pickerSelectedRange[0] | date)
+                    : (pickerSelectedRange[0] | date) +
+                      " - " +
+                      (pickerSelectedRange[1] | date)
+                }}</span>
+              </p>
+            </div>
+
+            <div class="picker-card__picker">
+              <mat-card class="picker-card__calendar">
+                <mat-calendar
+                  *ngIf="isMonthCurr"
+                  [selected]="dateRange"
+                  (selectedChange)="changeDatePicker($event, 'dateFrom')"
+                  [startAt]="startAtCurr"
+                  [minDate]="minDate"
+                  [maxDate]="maxDate"
+                ></mat-calendar>
+                <mat-calendar
+                  *ngIf="!isMonthCurr"
+                  [selected]="dateRange"
+                  (selectedChange)="changeDatePicker($event, 'dateFrom')"
+                  [startAt]="startAtPrev"
+                  startView="month"
+                  [maxDate]="maxDate"
+                ></mat-calendar>
+              </mat-card>
+
+              <mat-card
+                class="picker-card__calendar"
+                *ngIf="selectedOption === 'Custom Date'"
+              >
+                <mat-calendar
+                  [selected]="dateRange"
+                  (selectedChange)="changeDatePicker($event, 'dateTo')"
+                  [startAt]="startAtCurr"
+                  [minDate]="minDate"
+                  [maxDate]="maxDate"
+                ></mat-calendar>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+
+        <div class="picker-card__footer">
+          <button mat-raised-button (click)="closePopup()">Cancel</button>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            (click)="closePopup('rangeOfDate')"
+          >
+            Apply
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,36 @@
+<div class="card">
+  <h3 class="card__title">
+    {{ question }}
+  </h3>
+  <p *ngIf="hint" class="card__hint">
+    {{ hint }}
+  </p>
+
+  <div class="card__answers">
+    <small *ngIf="!!selectedValue" class="answer">{{ selectedValue }}</small>
+    <div class="options">
+      <mat-radio-group
+        class="radio-group"
+        color="primary"
+        aria-label="Select an option"
+      >
+        <mat-radio-button
+          (click)="chooseAnswer(radio.value)"
+          *ngFor="let value of radioArr"
+          value="{{ value }}"
+          #radio
+        >
+          {{ value }}</mat-radio-button
+        >
+        <mat-radio-button
+          *ngIf="customRadio"
+          (click)="chooseAnswer(radio.value)"
+          #radio
+          value="12"
+        >
+          +12
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+</div>

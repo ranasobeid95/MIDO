@@ -1,0 +1,28 @@
+<app-auth-container class="land">
+  <p class="mb-4" copy>Your health tracking and optimization system</p>
+  <div class="land__btns mt-4">
+    <button
+      [routerLink]="['/', ROUTES.SIGN_UP]"
+      [ngClass]="{
+        'mt-3 basic-style-btn': true,
+        'main-btn': true
+      }"
+      mat-raised-button
+      color="primary"
+    >
+      Sign Up
+    </button>
+    <br />
+    <button
+      [routerLink]="['/', ROUTES.SIGN_IN]"
+      [ngClass]="{
+        'mt-3 basic-style-btn': true,
+        'main-btn': true
+      }"
+      mat-raised-button
+      color="primary"
+    >
+      Login
+    </button>
+  </div>
+</app-auth-container>

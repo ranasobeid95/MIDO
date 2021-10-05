@@ -1,0 +1,25 @@
+<div class="verify-email">
+  <div class="verify-email__content">
+    <h2 class="verify-email__title">Please verify your email address</h2>
+    <p class="verify-email__copy">
+      An email containing verifcation instuctions was sent to
+      <strong> {{ email }}</strong>
+    </p>
+    <button
+      [class.loading]="loading"
+      (click)="resendEmail()"
+      class="res-btn"
+      [disabled]="loading"
+      *ngIf="!result"
+    >
+      Resend verification email
+    </button>
+    <span *ngIf="result" class="message-ok">
+      <mat-icon class="icon-ok"> check_circle </mat-icon>
+      Resend Successfully, check your email again !
+    </span>
+  </div>
+  <button (click)="closeMessage()" class="btn-close">
+    <mat-icon class="icon">close</mat-icon>
+  </button>
+</div>

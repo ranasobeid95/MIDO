@@ -1,0 +1,97 @@
+@import "~/src/assets/scss/variables";
+
+.settings {
+  .title {
+    color: $color-primary;
+    font-weight: 600;
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.form {
+  &__field {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    &__input-wrap {
+      position: relative;
+
+      .password-icon {
+        top: 1rem !important;
+      }
+    }
+
+    .input{
+      border: 1px solid $grey-light;
+      background-color: #fff;
+      padding: 1rem 1.5rem;
+      outline: none;
+      border-radius: 0.5rem;
+      box-shadow: -1px 1px 4px rgba(0, 0, 0, 0.4);
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 1.4rem;
+    }
+
+    &--50 {
+      flex-grow: 1;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+
+    .label {
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: $color-accent;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  &__controls {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 6rem;
+    position: relative;
+
+    .error {
+      position: absolute;
+      text-align: center;
+      font-size: 1.3rem;
+      width: 100%;
+      left: 50%;
+      top: -1rem;
+      transform: translate(-50%, -100%);
+    }
+
+    button {
+      padding: 0 6rem;
+    }
+  }
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: $grey-light;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+}
+
+// Override  mat-input-element
+.form__field .mat-input-element {
+  border: 1px solid $grey-light;
+  background-color: #fff;
+  padding: 1rem 1.5rem;
+  outline: none;
+  border-radius: 0.5rem;
+  box-shadow: -1px 1px 4px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1.4rem;
+}

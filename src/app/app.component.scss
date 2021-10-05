@@ -1,0 +1,10 @@
+@import "../assets/scss/variables";
+
+.app-main {
+  min-height: calc(100vh - 30rem);
+  padding-top: 8rem;
+}
+
+.app {
+  background-color: $bg-body !important;
+}

@@ -1,0 +1,33 @@
+<div class="row container-style setting">
+  <div class="setting__header">
+    <h2 class="title">Settings</h2>
+    <a [routerLink]="['/', ROUTES.PROFILE_PAGE]" class="link-profile"
+      >Go to your profile info</a
+    >
+  </div>
+  <div class="setting__content">
+    <ul class="setting__content__left">
+      <li>
+        <a
+          [class.link-active]="param === 'account'"
+          (click)="navigateTo('account')"
+          class="link link--top"
+          >Account</a
+        >
+      </li>
+      <li>
+        <a
+          [class.link-active]="param === 'password'"
+          (click)="navigateTo('password')"
+          class="link link--bottom"
+          >Password</a
+        >
+      </li>
+    </ul>
+
+    <div class="setting__content__right">
+      <app-setting-account *ngIf="param === 'account'"></app-setting-account>
+      <app-setting-password *ngIf="param === 'password'"></app-setting-password>
+    </div>
+  </div>
+</div>

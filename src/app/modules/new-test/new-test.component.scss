@@ -1,0 +1,170 @@
+@import "~/src/assets/scss/variables";
+@import "~/src/assets/scss/mixins";
+
+.new-test {
+  padding-top: 3rem;
+  padding-bottom: 7rem;
+  position: relative;
+
+  &__title {
+    text-align: center;
+    font-size: 2.8rem;
+    color: $color-primary;
+    text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.4);
+    margin-bottom: 2rem;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+
+    @include respond(mobile) {
+      flex-direction: column;
+    }
+
+    &__registration {
+      margin-right: 3rem;
+    }
+    .date-registration {
+      display: flex;
+      flex-direction: column;
+      h4 {
+        color: $color-primary-dark;
+        font-size: 1.8rem;
+        font-weight: 600;
+      }
+
+      .form-date {
+        display: flex;
+        flex-direction: column;
+
+        .date-input {
+          font-size: 1.6rem !important ;
+          padding-left: 1rem;
+        }
+      }
+    }
+  }
+
+  &__questions {
+    flex-grow: 2;
+    text-align: center;
+
+    &__title {
+      font-size: 1.8rem;
+      color: $color-accent;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__submit-wrap {
+    margin-top: 3rem;
+    text-align: right;
+    margin-right: 3rem;
+  }
+
+  &__submit {
+    width: 30rem;
+    position: relative;
+
+    .hint {
+      position: absolute;
+      width: 100%;
+      display: inline-block;
+      left: 50%;
+      top: 100%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+// Questions
+
+app-queston-card-radio {
+  display: block;
+
+  &:not(:last-child) {
+    margin-bottom: 4rem;
+  }
+}
+
+.test-spinner {
+  position: fixed;
+  @include absCenter();
+  width: 20rem !important;
+  height: 20rem !important;
+  z-index: 60;
+}
+
+.test-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 50;
+}
+
+.test-popup {
+  z-index: 60;
+  position: fixed;
+  @include absCenter();
+  width: 50rem;
+  display: flex;
+  flex-direction: column;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  align-items: center;
+  background-color: $color-accent;
+  border: 2rem solid $color-primary-dark;
+  color: #fff;
+
+  .title {
+    font-size: 2.2rem;
+    color: $color-primary-light;
+    text-align: center;
+  }
+
+  .title-sub {
+    font-size: 1.8rem;
+  }
+}
+
+.error {
+  position: fixed;
+  top: 10rem;
+  right: 0;
+  height: 5.5rem;
+  background-color: #dc3545;
+  color: #fff;
+  padding: 2rem 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 5rem;
+  border-bottom-left-radius: 5rem;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
+  z-index: 300;
+  opacity: 0.6;
+  transform: translateX(110%);
+  transition: all 0.5s;
+
+  .message {
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+}
+
+.show-error {
+  opacity: 0.95;
+  transform: translateX(0);
+}
+
+app-question-card-radio {
+  margin-bottom: 2rem;
+  display: block;
+}

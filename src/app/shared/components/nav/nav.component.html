@@ -1,0 +1,93 @@
+<header class="header-container">
+  <div
+    [ngClass]="{
+      'show-overlay': showSideNav,
+      'hide-overlay': !showSideNav
+    }"
+    (click)="toggleSideNav()"
+    class="overlay"
+  ></div>
+  <div class="row pt-3 pb-3 header-container__content">
+    <app-circles
+      [size]="30"
+      class="
+        hide-lt-xs
+        header-container__content__circles
+        header-container__content__circles--center
+      "
+    ></app-circles>
+
+    <app-side-nav
+      [ngClass]="{ 'show-side': showSideNav, 'hide-side': !showSideNav }"
+      [user]="user"
+      (closeSideNav)="toggleSideNav()"
+    >
+    </app-side-nav>
+    <button
+      (click)="toggleSideNav()"
+      class="hide-gt-xs menu_icon"
+      mat-icon-button
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="header-container__left-items">
+      <a class="header-container-logo" [routerLink]="['/', ROUTES.HOME_PAGE]">
+        <img src="../../../../assets/images/mido_logo_empty.png" alt="mido" />
+      </a>
+    </div>
+
+    <nav class="hide-lt-xs header-container__right-items">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a [routerLink]="['/', ROUTES.HOME_PAGE]" class="nav-link">home</a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="['/', ROUTES.ABOUT_MIDO]" class="nav-link"
+            >about mido</a
+          >
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="['/', ROUTES.QUICK_START]" class="nav-link"
+            >Quick start</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="user">
+          <a [routerLink]="['/', ROUTES.NEW_TEST_PAGE]" class="nav-link">
+            new test <span>+</span>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!user">
+          <a [routerLink]="['/', ROUTES.SIGN_IN]" class="nav-link">Sign in</a>
+        </li>
+        <li class="nav-item sign-up" *ngIf="!user">
+          <a [routerLink]="['/', ROUTES.SIGN_UP]" class="nav-link">Sign up</a>
+        </li>
+      </ul>
+      <button
+        *ngIf="user"
+        class="mr-3 avatar-section"
+        (click)="toggleDropdownMenu()"
+        id="parentDrop"
+      >
+        <img
+          class="avatar"
+          [src]="user.profilePhoto || defaultImage"
+          alt="img profile"
+        />
+        <mat-icon [ngClass]="{ 'opened-arrow': showDropdownMenu }"
+          >arrow_drop_down</mat-icon
+        >
+      </button>
+    </nav>
+  </div>
+
+  <app-dropdown-menu
+    id="dropDown"
+    class="dropDown"
+    [class.show-dropdown]="showDropdownMenu"
+    (clickedLink)="toggleDropdownMenu()"
+    [user]="user"
+    appOffClick
+    (clickOutside)="closeDropDown()"
+  ></app-dropdown-menu>
+</header>

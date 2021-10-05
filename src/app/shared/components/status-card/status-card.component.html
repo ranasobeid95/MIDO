@@ -1,0 +1,51 @@
+<div
+  *ngIf="result"
+  class="p-4 mb-5 ms-4 status-card-container"
+  [class.secondary]="secondary"
+>
+  <div class="status-card-container__content">
+    <h1 class="status-card-container__content__title">{{ result.title }}</h1>
+    <img
+      *ngIf="!secondary"
+      [src]="result.icon"
+      alt="health status"
+      class="status-card-container__content__icon"
+    />
+  </div>
+
+  <circle-progress
+    #progress
+    *ngIf="result"
+    [percent]="result.percent"
+    [radius]="secondary ? 40 : 75"
+    [outerStrokeWidth]="secondary ? 6 : 10"
+    [innerStrokeWidth]="secondary ? 9 : 18"
+    [outerStrokeColor]="getOuterColor(progress.percent)"
+    [innerStrokeColor]="secondary ? '#c4d0d2' : '#67a3a5'"
+    [showUnits]="false"
+    [titleColor]="'#f5fafa'"
+    [titleFontSize]="'24'"
+    [animation]="true"
+    [animationDuration]="800"
+    [space]="secondary ? -8 : -13.5"
+    [startFromZero]="true"
+    [showSubtitle]="false"
+    [renderOnClick]="false"
+  ></circle-progress>
+
+  <div
+    *ngIf="!secondary && result.lastAverage"
+    [ngClass]="{
+      'status-card-container__noChange': noChange,
+      'status-card-container__increase': increase,
+      'status-card-container__decrease': decrease,
+      'status-card-container__change': true
+    }"
+  >
+    <span class="signal" [class.noChange]="noChange" *ngIf="noChange">=</span>
+    <span class="signal" *ngIf="increase">+</span>
+    <span class="signal" *ngIf="decrease">-</span>
+
+    <span class="num" *ngIf="!noChange">{{ deffer }}</span>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="app">
+  <div class="app__loading" *ngIf="isLoading; else loaded">
+    <app-loader-main></app-loader-main>
+  </div>
+
+  <ng-template #loaded>
+    <main [class.app-main]="showNav || showFooter">
+      <app-nav *ngIf="showNav"></app-nav>
+      <app-email-verify
+        (closeVerify)="showVerify = false"
+        *ngIf="showVerify"
+        [email]="email"
+      ></app-email-verify>
+      <router-outlet></router-outlet>
+      <app-footer *ngIf="showFooter"></app-footer>
+    </main>
+  </ng-template>
+</div>

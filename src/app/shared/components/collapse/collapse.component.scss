@@ -1,0 +1,61 @@
+@import "../../../../assets/scss/variables";
+@import "../../../../assets/scss/mixins";
+
+.collapse-container {
+  background-color: #1d5a63;
+  border-radius: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  color: $bg-body !important;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: 600;
+    width: 100%;
+    z-index: 2;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .opened-arrow {
+    transform: rotate(180deg);
+  }
+  .mat-icon {
+    color: $bg-body;
+    cursor: pointer;
+    width: auto !important;
+    height: initial !important;
+    font-size: 3rem !important ;
+    transition: transform 0.6s ease-in-out;
+
+    @include respond(big-desktop) {
+      font-size: 5rem !important ;
+      height: inherit !important;
+      width: auto !important;
+    }
+  }
+
+  &__content {
+    padding: 0 1.5rem;
+    font-size: 1.4rem;
+    height: 0;
+    overflow: hidden;
+    transition: all 0.5s;
+  }
+}
+
+.second {
+  background-color: #296e78 !important;
+}
+
+.third {
+  background-color: #3da6b4 !important;
+}

@@ -1,0 +1,63 @@
+@import "../variables";
+
+.hide-gt-xs {
+  @media (min-width: 600px) {
+    display: none !important;
+  }
+}
+
+.hide-lt-xs {
+  @media (max-width: 599px) {
+    display: none !important;
+  }
+}
+
+.row {
+  padding-left: 4rem;
+  padding-right: 4rem;
+
+  @include respond(mobile) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  @include respond(big-desktop) {
+    padding-left: 8rem;
+    padding-right: 8rem;
+  }
+}
+
+.btn-loading {
+  pointer-events: none;
+  cursor: default;
+}
+
+.container-style {
+  padding-top: 2.8rem;
+  padding-bottom: 5rem;
+  border-radius: 2rem;
+  background-color: #d5e3e5;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 5rem !important;
+  margin-bottom: 5rem !important;
+
+  @include respond(mobile) {
+    width: 100%;
+    padding-top: 2rem !important;
+    padding-bottom: 5rem !important;
+    border-radius: 0;
+    margin: 0 !important;
+  }
+  @include respond(tab-port) {
+    width: 100%;
+    border-radius: 0;
+    margin: 0 !important;
+  }
+
+  @include respond(tab-land) {
+    width: 100%;
+    border-radius: 0;
+    margin: 0 !important;
+  }
+}

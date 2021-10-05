@@ -1,0 +1,173 @@
+<ng-container *ngIf="!!results">
+  <div class="row container-style pt-8 results-container">
+    <div class="results-container__header">
+      <div class="results-container__statistics">
+        <h5 class="results-container__statistics__testNumber">
+          Test Number: <span> {{ results.length }}</span>
+        </h5>
+        <h5 class="results-container__statistics__date">
+          Test date:
+          <span>
+            {{ results[results.length - 1].createdAt | date: "MMM d,y" }}</span
+          >
+        </h5>
+      </div>
+      <div class="results-container__header__left">
+        <h1 class="title results-container__header__left__wlc" *ngIf="userName">
+          {{ userName | uppercase }}, HERE ARE SUMMARY OF YOUR LATEST RESULTS!
+        </h1>
+      </div>
+      <div class="results-container__header__right">
+        <div>
+          <p class="p-3 box-content results-container__header__right__overall">
+            {{ paramMessage }}
+            <a
+              class="more-info"
+              [routerLink]="['/', ROUTES.ABOUT_MIDO]"
+              [queryParams]="title === 'Health' ? {} : { para: title }"
+            >
+              Learn More
+              <mat-icon>info</mat-icon>
+            </a>
+          </p>
+        </div>
+        <div
+          class="results-container__header__right__status"
+          [class.secondary]="title !== 'Health'"
+        >
+          <app-status-card
+            [result]="getCardMain(keyParm, true)"
+          ></app-status-card>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-7 pb-5 results-container__content">
+      <div *ngIf="title == 'Health'">
+        <p class="p-3 mb-5 box-content results-container__content__content-top">
+          {{ results[results.length - 1].rec_1 }}
+        </p>
+      </div>
+
+      <div *ngIf="title == 'Health' && results[results.length - 1].rec_2">
+        <p class="p-3 box-content results-container__content__content-bottom">
+          {{ results[results.length - 1].rec_2 }}
+        </p>
+      </div>
+
+      <div class="results-container__content__progressionChart">
+        <app-chart-container
+          [chartResults]="results"
+          [type]="'bar'"
+          [paramName]="this.title"
+        ></app-chart-container>
+      </div>
+
+      <div
+        *ngIf="!!parametersSub[keyParm]"
+        class="results-container__content__details"
+      >
+        <p class="results-container__content__details__header">
+          {{ title }} Test Scores
+        </p>
+
+        <ul class="results-container__content__details__scores">
+          <li
+            *ngFor="let item of parametersSub[keyParm]"
+            class="ul-item results-container__content__details__scores-item"
+          >
+            <img
+              [src]="item.imgUrl"
+              [alt]="item.key"
+              class="
+                ul-item-icon
+                results-container__content__details__scores-item-icon
+              "
+            />
+            <div>
+              <app-status-card
+                class="status-card-container"
+                [secondary]="true"
+                [result]="getCardSub(item.key)"
+              ></app-status-card>
+              <!-- [result]="{ percent: item.average, title: item.title }" -->
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="results-container__content__progressionChart">
+        <app-chart-container
+          [chartResults]="results"
+          [type]="'line'"
+          [paramName]="title"
+        ></app-chart-container>
+      </div>
+    </div>
+    <div class="results-container__footer">
+      <h1 class="title">Your Current Values</h1>
+      <p>
+        Click on the parameters below to discover details about your test
+        results
+      </p>
+
+      <ul class="mt-7 results-container__footer__parameters">
+        <ng-container *ngFor="let key of parameterKeys; index as i">
+          <li
+            *ngIf="showCard(parametersMain[key].name)"
+            class="ul-item results-container__footer__parameters-item"
+            (click)="goToTop(parametersMain[key].name)"
+          >
+            <img
+              [src]="parametersMain[key].imgBlack"
+              [alt]="parametersMain[key].name + 'image'"
+              class="
+                ul-item-icon
+                results-container__footer__parameters-item-icon
+              "
+            />
+            <div>
+              <app-status-card
+                class="status-card-container"
+                [secondary]="true"
+                [result]="getCardMain(key)"
+              ></app-status-card>
+            </div>
+          </li>
+        </ng-container>
+      </ul>
+
+      <button
+        mat-raised-button
+        [routerLink]="['/', ROUTES.ABOUT_MIDO]"
+        [queryParams]="title === 'Health' ? {} : { para: title }"
+        class="results-container__footer__btn"
+        [ngClass]="{
+          'basic-style-btn': true,
+          'main-btn': true
+        }"
+        color="primary"
+        (click)="goTo(title === 'Health' ? '' : title)"
+      >
+        The science behind
+        {{ title == "Health" ? "mido" : title }}
+      </button>
+    </div>
+    <mat-spinner *ngIf="loading" class="spinner"></mat-spinner>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!results">
+  <div class="row container-style pt-8 tests-no">
+    <p class="tests-no-message mb-5">{{ message }}</p>
+    <button
+      *ngIf="isNoTests"
+      [routerLink]="['/', ROUTES.NEW_TEST_PAGE]"
+      mat-raised-button
+      color="primary"
+    >
+      Try your first test now!
+    </button>
+    <mat-spinner *ngIf="loading" class="spinner"></mat-spinner>
+  </div>
+</ng-container>

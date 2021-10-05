@@ -1,0 +1,65 @@
+@import "~/src/assets/scss/variables";
+
+.card {
+
+  &__answers{
+    position: relative;
+    margin-top: 1rem;
+
+    .answer {
+      font-size: 2rem;
+      font-weight: 600;
+      color: $color-primary;
+      position: absolute;
+      top: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .options {
+      padding-top: 4rem;
+    }
+  }
+
+}
+
+.radio-group {
+  display: flex;
+  // width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.custom-radio {
+  display: inline-block;
+  
+  .text {
+    border: 1px solid rgba(0, 0, 0, 0.54);
+    border-radius: 50%;
+    padding: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+  }
+
+  .input {
+    width: 3.3rem;
+    height: 2.5rem;
+    display: inline-block;
+    padding: .8rem .4rem;
+    border: 1px solid $grey-dark;
+    border-radius: 3px;
+    outline: none;
+    font-size: 1.4rem;
+    margin-top: .8rem;
+
+    -moz-appearance: textfield;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button{
+      -webkit-appearance: none;
+    }
+
+  }
+}

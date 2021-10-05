@@ -1,0 +1,26 @@
+<ng-container *ngIf="data">
+  <div class="row pt-7 about-card-container">
+    <div class="about-card-container__icon">
+      <img [src]="data.icon" />
+    </div>
+
+    <div class="ps-6 pe-6 mb-4 about-card-container__header">
+      <span class="about-card-container__header-index">1</span>
+      <p class="about-card-container__header-title">
+        <span>{{ data.title }} Test :</span> {{ data.aboutTest }}
+      </p>
+    </div>
+
+    <div
+      class="ps-6 pe-6 about-card-container__content"
+      *ngFor="let data of data.about; let i = index"
+    >
+      <app-collapse
+        [header]="data.Q"
+        [second]="i == 1 ? true : false"
+        [third]="i == 2 ? true : false"
+        [content]="data.Ans"
+      ></app-collapse>
+    </div>
+  </div>
+</ng-container>

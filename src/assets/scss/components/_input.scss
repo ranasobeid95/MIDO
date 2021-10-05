@@ -1,0 +1,17 @@
+@import "../variables";
+
+.input-style {
+  border: 0.1rem solid $white-color !important;
+  border-radius: 0.5rem !important;
+  font-size: 1.6rem !important;
+  width: 90% !important;
+  background-color: $bg-body !important;
+  &::placeholder {
+    color: #a9a5a5 !important;
+  }
+}
+
+.filed-style {
+  width: 100%;
+  padding: 0;
+}

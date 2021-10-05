@@ -1,0 +1,40 @@
+@import "../../../../assets/scss/variables";
+@import "../../../../assets/scss/mixins";
+
+.sign-in-page {
+  &__form {
+    @include flexCenter(column);
+    width: 100%;
+    .checkbox {
+      align-self: flex-start;
+      color: $white-color;
+      font-size: 1.1rem;
+
+      &:hover {
+        color: $hover-color;
+      }
+    }
+  }
+
+  &__reset-password {
+    @include flexCenter(column);
+    width: 100%;
+
+    .invalid-data {
+      @include flexCenter(row);
+      width: 100%;
+      font-size: 0.8rem;
+    }
+    a {
+      text-decoration: none;
+    }
+    &-msg {
+      color: $white-color;
+      cursor: pointer;
+
+      &:hover {
+        color: $hover-color;
+      }
+    }
+  }
+}

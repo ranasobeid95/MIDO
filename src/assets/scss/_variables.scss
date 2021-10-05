@@ -1,0 +1,51 @@
+// COLORS
+$color-primary: #267b7f;
+$color-primary-dark: #0d4b4f;
+$color-primary-light: #67a3a5;
+
+$color-accent: #202424;
+$color-accent-dark: #0b0d0d;
+
+$white-color: #fff;
+$black-color: #000;
+
+$badges-bg-minus: #ffc107;
+$badges-bg-plus: #139c42;
+
+$grey-light: #c0c2c1;
+$grey-mid: #818382;
+$grey-dark: #444345;
+
+$bg-gradient: linear-gradient(180deg, #267b7f 45.89%, #56b2ae 100%);
+$bg-body: #f5fafa;
+
+$hover-color: #319fa5;
+
+$box-shadow: 4px 10px 22px rgba(0, 0, 0, 0.25);
+
+$hover-color: #319fa5;
+
+$bg-verify: #ffc107;
+
+//FONT
+
+$global-font-family: "Poppins", sans-serif;
+
+$default-font-size: 1.6rem;
+
+$font-weights: (
+  "regular": 400,
+  "medium": 500,
+  "bold": 700,
+);
+
+// Spacing
+$spacer-0: 0;
+$spacer-1: 0.5rem;
+$spacer-2: 1rem;
+$spacer-3: 1.5rem;
+$spacer-4: 2rem;
+$spacer-5: 3rem;
+$spacer-6: 4rem;
+$spacer-7: 5rem;
+$spacer-8: 6rem;

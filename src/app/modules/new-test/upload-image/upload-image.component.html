@@ -1,0 +1,20 @@
+<div (click)="fileUpload.click()" class="upload">
+  <input
+    #fileUpload
+    (change)="handleChangeImage($event)"
+    class="upload__input"
+    type="file"
+  />
+  <div *ngIf="!imgUrl" class="upload__content">
+    <mat-icon>cloud_upload</mat-icon>
+    <p>
+      Click here to upload<br />
+      mido-card photo
+    </p>
+  </div>
+
+  <ng-container *ngIf="!loading && imgUrl">
+    <img class="upload__img" [src]="imgUrl" />
+  </ng-container>
+  <mat-spinner *ngIf="loading" class="spinner"></mat-spinner>
+</div>

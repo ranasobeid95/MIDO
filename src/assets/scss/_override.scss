@@ -1,0 +1,154 @@
+.mat-checkbox-frame {
+  border: 0.1rem solid $white-color !important;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  padding: 0 !important;
+}
+
+.mat-form-field-underline {
+  display: none;
+}
+
+.mat-error {
+  font-size: 1.2rem !important;
+}
+
+/*============================*/
+/* matButton */
+/*============================*/
+.mat-stroked-button:not(.mat-button-disabled) {
+  border-color: #fff !important;
+}
+
+.mat-raised-button.mat-button-disabled {
+  border: 1px solid rgb(93, 93, 93) !important;
+}
+
+.mat-raised-button.mat-button-disabled {
+  color: rgb(168, 168, 168) !important;
+}
+
+.mat-form-field-subscript-wrapper {
+  font-size: 1rem;
+  margin-top: 0.3rem;
+}
+
+.mat-hint {
+  color: #eb880f;
+}
+
+.mat-checkbox-inner-container {
+  height: 1.1rem !important;
+  width: 1.1rem !important;
+}
+.password-icon {
+  font-size: 1.6rem;
+  position: absolute;
+  right: 0.5rem;
+  top: 1.3rem;
+  cursor: pointer;
+  color: $color-accent;
+
+  &:hover {
+    color: $hover-color;
+  }
+}
+
+/*============================*/
+/* matRadio */
+/*============================*/
+
+.mat-radio-button {
+  margin-right: 2rem;
+  margin-bottom: 1rem;
+}
+
+.mat-radio-label {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-radio-label-content {
+  padding-left: 0 !important;
+  font-size: 1.6rem;
+  margin-top: 0.8rem;
+}
+
+/*============================*/
+/* mat Spinner */
+/*============================*/
+.test-spinner > svg {
+  width: 20rem !important;
+  height: 20rem !important;
+}
+
+.test-spinner > svg > circle {
+  stroke-width: 5px !important;
+}
+
+/*============================*/
+/* mat snackbar */
+/*============================*/
+
+.success-snackbar {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.success-snackbar button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+}
+
+.fail-snackbar {
+  background: #f44336;
+  color: white;
+}
+
+.fail-snackbar button {
+  background: #f44336;
+  color: white;
+  border: none;
+}
+
+// override on chart
+.profile .chart-container {
+  width: 100% !important;
+}
+
+.profile canvas {
+  width: 100% !important;
+}
+
+/*============================*/
+/* mat Calender  */
+/*============================*/
+.mat-card:not([class*="mat-elevation-z"]) {
+  box-shadow: none;
+}
+
+button {
+  .mat-button-wrapper {
+    font-size: 1.4rem !important;
+  }
+}
+
+.time-input {
+  input.mat-input-element {
+    font-size: 1.6rem !important;
+    padding-left: 1rem;
+    box-sizing: inherit !important;
+  }
+}
+
+.container-chart .mat-card {
+  @include respond(tab-port) {
+    padding: 0.5rem;
+  }
+
+  @include respond(mobile) {
+    padding: 0;
+  }
+}

@@ -1,0 +1,28 @@
+.circles {
+  position: relative;
+  width: 30rem;
+  height: 30rem;
+
+  .circle {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+    &--3,
+    &--2,
+    &--1{      
+      top: 0;
+      left: 0;      
+    }
+
+    &--2 {
+      transform: translate(33%,66%);
+    }
+
+    &--1 {
+      transform: translate(-33%, -66%);
+    }
+
+
+  }
+}

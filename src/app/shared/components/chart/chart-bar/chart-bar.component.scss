@@ -1,0 +1,26 @@
+@import "~src/assets/scss/variables";
+@import "~src/assets/scss/mixins";
+
+.chart {
+  background-color: #56b2ae;
+  position: relative;
+  height: 70vh !important;
+
+  @include respond(big-desktop) {
+    height: 50vh !important;
+  }
+
+  @include respond(tab-land) {
+    height: 30vh !important;
+  }
+
+  @include respond(tab-port) {
+    height: 60vh !important;
+  }
+  @include respond(mobile) {
+    height: 50vh !important;
+  }
+}
+.profile-chart {
+  padding: 2rem;
+}

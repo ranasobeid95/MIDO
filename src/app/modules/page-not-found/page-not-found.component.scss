@@ -1,0 +1,26 @@
+@import "../../../assets/scss/variables";
+
+.page-not-found-container {
+  background: $bg-gradient;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $white-color;
+
+  &__header {
+    font-size: 16rem;
+  }
+
+  &__content {
+    font-size: 2rem;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+
+    .mat-icon {
+      margin-left: 1rem;
+    }
+  }
+}

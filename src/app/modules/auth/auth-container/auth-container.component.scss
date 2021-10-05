@@ -1,0 +1,43 @@
+@import "../../../../assets/scss/variables";
+@import "../../../../assets/scss/mixins";
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+
+  &__content {
+    @include flexCenter(column);
+    justify-content: normal;
+    background-color: $color-accent;
+    width: 40rem;
+    min-height: 50rem;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: $box-shadow;
+
+    @include respond(mobile) {
+      width: 30rem;
+    }
+  }
+  &__addJustifyContent {
+    justify-content: center !important;
+  }
+
+  &__title {
+    color: $color-primary-light;
+    cursor: default;
+    font-size: 2rem;
+    text-shadow: 1px 1px $color-primary-dark;
+    font-weight: map-get($font-weights, "bold");
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+  }
+
+  &__body {
+    @include flexCenter(column);
+    width: 75%;
+  }
+  &__logo {
+    width: 75%;
+  }
+}

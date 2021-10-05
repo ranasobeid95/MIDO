@@ -1,0 +1,111 @@
+@import "~src/assets/scss/variables";
+@import "~src/assets/scss/mixins";
+
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  &__title {
+    font-size: 3.5rem;
+    color: $color-primary-dark;
+  }
+  &__copy {
+    font-size: 2.5rem;
+    color: $color-primary-dark;
+
+    span {
+      font-size: 2.8rem;
+      color: $color-primary-dark;
+      font-weight: 600;
+    }
+
+    @include respond(mobile) {
+      font-size: 2rem;
+      span {
+        font-size: 2.2rem;
+      }
+    }
+  }
+
+  &__content {
+    display: flex;
+    justify-content: center;
+
+    .title {
+      font-size: 2.2rem;
+      color: $color-accent-dark;
+      font-weight: 600;
+    }
+
+    &__side {
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &--left {
+        @media (max-width: 800px) {
+          margin-right: 10%;
+        }
+
+        @include respond(mobile) {
+          margin-right: 0;
+          margin-bottom: 6rem;
+        }
+      }
+
+      @include respond(mobile) {
+        width: 90%;
+      }
+    }
+
+    @include respond(mobile) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .img {
+    width: 20rem;
+    height: 25rem;
+    align-self: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    cursor: pointer;
+  }
+  .img-1 {
+    background-image: url("../../../assets//images/upload-img.png");
+  }
+  .img-2 {
+    background-image: url("../../../assets//images/result-img.png");
+  }
+
+  .button-link {
+    display: inline-block;
+    text-decoration: none;
+    background-color: $color-accent-dark;
+    color: #fff;
+    font-size: 1.8rem;
+    border-radius: 0.5rem;
+    padding: 0.4rem 1rem;
+    width: 25rem;
+    text-align: center;
+    transition: all 0.4s;
+
+    &:hover,
+    &:active {
+      background-color: $color-primary-dark;
+    }
+  }
+}
+
+.lastDate {
+  color: $color-primary-light;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 0.4rem;
+}

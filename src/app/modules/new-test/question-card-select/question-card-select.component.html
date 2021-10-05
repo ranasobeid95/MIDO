@@ -1,0 +1,28 @@
+<div class="card">
+  <h3 class="card__title">4. Any major changes to your diet</h3>
+
+  <div (click)="toggleClick()" class="select">
+    <label class="select__label">
+      <input
+        class="select__input"
+        type="text"
+        [value]="selectedDiet"
+        readonly
+        placeholder="Choose an option"
+      />
+      <mat-icon class="select__icon">keyboard_arrow_down</mat-icon>
+      <ul *ngIf="isSelected" class="select__list">
+        <li
+          (click)="onChooseValue(item)"
+          ngModule
+          #item
+          class="select__item"
+          *ngFor="let diet of dietTypes"
+          attr.data-value="{{ diet.value }}"
+        >
+          {{ diet.text }}
+        </li>
+      </ul>
+    </label>
+  </div>
+</div>
